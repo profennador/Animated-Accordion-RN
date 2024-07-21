@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { FlatList, StyleSheet, View } from "react-native";
+import data from "./data";
+import Accordion from "./Accordion";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
+      <FlatList
+        data={data}
+        renderItem={({ item }) => (
+          <Accordion content={item.content} heading={item.heading} />
+        )}
+        ItemSeparatorComponent={ItemSeparatorComponent}
+      />
     </View>
   );
+}
+
+function ItemSeparatorComponent() {
+  return <View style={{ paddingVertical: 8 }} />;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#0C2D42",
+    padding: 24,
   },
 });
